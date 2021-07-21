@@ -15,3 +15,4 @@ jobs:
 
       - name: run-tests
         run: |
+          python -m unittest tests.test_script
