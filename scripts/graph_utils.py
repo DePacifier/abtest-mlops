@@ -3,6 +3,14 @@ import pandas as pd
 import seaborn as sns
 
 
+def modified_bar_plot(df: pd.DataFrame, x: str, y: str, title: str) -> None:
+    plt.figure(figsize=(10, 6))
+    sns.barplot(x=df[x], y=df[y], ci=False)
+    plt.title(title)
+    plt.xlabel('Experiment Type')
+    plt.ylabel('Response (Proportion)')
+
+
 def plot_hist(df: pd.DataFrame, column: str, color: str) -> None:
     # plt.figure(figsize=(15, 10))
     # fig, ax = plt.subplots(1, figsize=(12, 7))
