@@ -1,0 +1,6 @@
+import matplotlib.pyplot as plt
+plt.plot(r, upper_limit,color = 'blue', linewidth=2, linestyle='dashed',label='Upper Bound')
+plt.plot(r, lower_limit,color = 'red', linewidth=2, linestyle='dashed',label='Lower Bound')
+plt.plot(r, x1,,color = 'red', linewidth=2, linestyle='dashed',label='Lower Bound'))
+plt.legend()
+plt.show()
