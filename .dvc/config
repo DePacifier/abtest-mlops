@@ -1,4 +1,4 @@
 [core]
     remote = remote_storage
 ['remote "remote_storage"']
-    url = gdrive://1lDDMO0H08LfOWebh7LJApWRxUpoKQsoT/Data
+    url = C:/Users/milky/AppData/Local/Temp/dvc-storage
