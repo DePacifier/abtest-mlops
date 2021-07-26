@@ -13,3 +13,4 @@ __pycache__/
 
 #my negation rules
 notebooks/mlruns/
+mlruns/
