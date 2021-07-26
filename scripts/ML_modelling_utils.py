@@ -7,10 +7,24 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score, roc_curve, confusion_matrix, accuracy_score, precision_recall_curve, f1_score, mean_squared_error, r2_score, mean_absolute_error, auc
 from sklearn.tree import DecisionTreeClassifier, plot_tree
-from xgboost import plot_tree, XGBClassifier
+from xgboost import plot_tree, XGBClassifier, DMatrix
 from scipy.stats import uniform
+from model_info_extractor import get_model_best_score, get_lr_model_score
 
 # Importing all data
+
+
+def return_best_model(model1, x_train, y_train, model2, model3):
+    acc_scores = []
+    model_name = ["Logisitc Regression", "Decision Tree", "XGB Classifier"]
+    acc_scores.append(get_lr_model_score(
+        model=model1, x_train=x_train, y_train=y_train))
+    acc_scores.append(get_model_best_score(model2))
+    acc_scores.append(get_model_best_score(model3))
+
+    index = acc_scores.index(min(acc_scores))
+
+    return (model_name[index], acc_scores[index])
 
 
 def import_all_data_using_tagslist(path: str, repo: str, tags: list) -> dict:
@@ -325,13 +339,16 @@ def get_xgbc_graph(model, x, rankdir=None, show=False):
 
 
 def train_xgb_classifier(x_train, y_train, x_valid, y_valid):
-    clf_xgb = XGBClassifier(use_label_encoder=False)
+    clf_xgb = XGBClassifier(use_label_encoder=False,
+                            objective='binary:logistic')
     params = {
         'max_depth': [*range(3, 10)],
         'min_child_weight': [*range(1, 6)],
         'learning_rate': uniform(0.01, 0.59),
         'subsample': uniform(0.3, 0.6),
         'colsample_bytree': uniform(0.5, 0.4),
+        # 'objective': "binary:logistic",
+        # 'eval_metric': "logloss"
     }
 
     kfold = KFold(n_splits=5, shuffle=True)

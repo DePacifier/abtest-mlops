@@ -1,10 +1,15 @@
 import pandas as pd
+from scipy.stats.stats import mode
 # importing local scripts
 # importing data_manipulator script
 # notebook trials
 from scripts.ml_modelling_utils import evaluate_model, plot_roc_curve_log, plot_precision_recall_curve
 # actual import
 # from ml_modelling_utils import evaluate_model, plot_roc_curve_log, plot_precision_recall_curve
+
+
+def get_lr_model_score(model, x_train, y_train):
+    return model.score(x_train, y_train)
 
 
 def get_lr_params(model):
